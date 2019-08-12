@@ -1,0 +1,48 @@
+.app {
+  font-size: 16px;
+  & .board {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    > .info {
+      > .line {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+    > .zone {
+      > .matrix {
+        display: flex;
+        flex-direction: column;
+        > .row {
+          display: flex;
+          flex-direction: row;
+          > .cell {
+            width: 40px;
+            height: 40px;
+            border: 1px dashed gray;
+            @mixin full-block {
+              width: 40px;
+              height: 40px;
+              text-align: center;
+              line-height: 40px;
+            }
+            > .block {
+              @include  full-block;
+              background: gray;
+            }
+            > .revealed-block {
+              @include full-block;
+              background: white;
+            }
+          }
+          > .cell:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    
+  }
+}
