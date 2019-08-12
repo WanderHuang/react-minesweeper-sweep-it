@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { CellTypes, traverseMatrix, mapLevel } from '../../util';
+import { CellTypes, traverseMatrix } from '../../util';
 import { changeMatrix, changeStatus } from '../../store/actions';
 
 class Cell extends React.Component {
@@ -117,7 +117,12 @@ function revealEmptyCell (matrix, cell, level) {
     const { status, value, isMine } = block
     if (status === CellTypes.CELL_NOT_REVEAL && value === 0 && !isMine) {
       block.status = CellTypes.CELL_NULL;
-      revealEmptyCell(matrix, block, level);
+      if (block !== cell) {
+        revealEmptyCell(matrix, block, level);
+      }
+    }
+    if (status === CellTypes.CELL_NOT_REVEAL && value !== 0) {
+      block.status = CellTypes.CELL_NUMBER;
     }
   });
   return matrix;
@@ -148,7 +153,6 @@ function revealAllCell (matrix) {
  * @param {*} level 游戏等级
  */
 function isSuccess (matrix, level) {
-  const { mineCount } = mapLevel[level]
   let count = 0
   matrix.forEach((row) => {
     row.forEach((cell) => {
@@ -157,7 +161,7 @@ function isSuccess (matrix, level) {
       }
     })
   })
-  return mineCount === count
+  return count === 0
 }
 
 
@@ -169,14 +173,17 @@ const mapDispatchToProps = (dispatch, props) => {
       const nextMatrix = replaceAllCellStatus(matrix, cell, level)
       dispatch(changeMatrix(nextMatrix));
       if (cell.isMine) {
-        dispatch(changeStatus(2))
-      }
-      if (isSuccess(nextMatrix, level)) {
-        dispatch(changeStatus(1))
+        dispatch(changeStatus(2));
+      } else if (isSuccess(nextMatrix, level)) {
+        dispatch(changeStatus(1));
       }
     },
     blockFlagged: (cell, matrix, level) => {
-      dispatch(changeMatrix(replaceAllCellStatus(matrix, cell, level, true)));
+      const nextMatrix = replaceAllCellStatus(matrix, cell, level, true)
+      dispatch(changeMatrix(nextMatrix));
+      if (isSuccess(nextMatrix, level)) {
+        dispatch(changeStatus(1));
+      }
     }
   };
 }

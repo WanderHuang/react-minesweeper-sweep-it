@@ -32,10 +32,20 @@ class Info extends React.Component {
   renderData (mine, level) {
     const { mineCount } = mapLevel[level]
     return (
-      <div className="info">
-        <span>Should Find : { mineCount }</span>
-        <span>Remain Block: { mine.notRevealed }</span>
-      </div>
+      <React.Fragment>
+        <div className="info">
+          <span>Should Find:</span>
+          <span>{ mineCount }</span>
+        </div>
+        <div className="info">
+          <span>Remain Block:</span>
+          <span>{ mine.notRevealed }</span>
+        </div>
+        <div className="info">
+          <span>Flagged Block:</span>
+          <span>{ mine.flagged }</span>
+        </div>
+      </React.Fragment>
     )
   }
 

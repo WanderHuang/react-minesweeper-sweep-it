@@ -146,14 +146,19 @@ export const traverseMatrix = (matrix, cell, level) => {
 
 export const mineStatistics = (matrix) => {
   let notRevealed = 0
+  let flagged = 0
   matrix.forEach((row) => {
     row.forEach((cell) => {
       if (cell.status === CellTypes.CELL_NOT_REVEAL) {
         notRevealed++
       }
+      if (cell.status === CellTypes.CELL_FLAG) {
+        flagged++
+      }
     })
   })
   return {
-    notRevealed
+    notRevealed,
+    flagged
   }
 }
