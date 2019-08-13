@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { CellTypes, traverseMatrix } from '../../util';
+import { CellTypes, traverseMatrix, GameStatus } from '../../util';
 import { changeMatrix, changeStatus } from '../../store/actions';
 
 class Cell extends React.Component {
@@ -37,13 +37,13 @@ class Cell extends React.Component {
 
   _reveal (event) {
     event.preventDefault();
-    const { blockRevealed, cell, matrix, level } = this.props;
-    blockRevealed(cell, matrix, level);
+    const { blockRevealed, cell, matrix, level, gameStatus } = this.props;
+    blockRevealed(cell, matrix, level, gameStatus);
   }
   _flag (event) {
     event.preventDefault();
-    const { blockFlagged, cell, matrix, level } = this.props;
-    blockFlagged(cell, matrix, level);
+    const { blockFlagged, cell, matrix, level, gameStatus } = this.props;
+    blockFlagged(cell, matrix, level, gameStatus);
   }
 
   render () {
@@ -169,20 +169,40 @@ const mapStateToProps = (state) => state
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    blockRevealed: (cell, matrix, level) => {
+    blockRevealed: (cell, matrix, level, gameStatus) => {
+      if (
+        gameStatus === GameStatus.GAME_PAUSED ||
+        gameStatus === GameStatus.GAME_SUCCESS ||
+        gameStatus === GameStatus.GAME_FAILED
+      ) {
+        return
+      }
+      if (gameStatus === GameStatus.GAME_NOT_START) {
+        dispatch(changeStatus(GameStatus.GAME_ON));
+      }
       const nextMatrix = replaceAllCellStatus(matrix, cell, level)
       dispatch(changeMatrix(nextMatrix));
       if (cell.isMine) {
-        dispatch(changeStatus(2));
+        dispatch(changeStatus(GameStatus.GAME_FAILED));
       } else if (isSuccess(nextMatrix, level)) {
-        dispatch(changeStatus(1));
+        dispatch(changeStatus(GameStatus.GAME_SUCCESS));
       }
     },
-    blockFlagged: (cell, matrix, level) => {
+    blockFlagged: (cell, matrix, level, gameStatus) => {
+      if (
+        gameStatus === GameStatus.GAME_PAUSED ||
+        gameStatus === GameStatus.GAME_SUCCESS ||
+        gameStatus === GameStatus.GAME_FAILED
+      ) {
+        return
+      }
+      if (gameStatus === GameStatus.GAME_NOT_START) {
+        dispatch(changeStatus(GameStatus.GAME_ON));
+      }
       const nextMatrix = replaceAllCellStatus(matrix, cell, level, true)
       dispatch(changeMatrix(nextMatrix));
       if (isSuccess(nextMatrix, level)) {
-        dispatch(changeStatus(1));
+        dispatch(changeStatus(GameStatus.GAME_SUCCESS));
       }
     }
   };

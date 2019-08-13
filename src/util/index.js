@@ -40,6 +40,38 @@ export const CellTypes = {
 }
 
 /**
+ * 定义游戏状态
+ * 0 未开始
+ * 1 游戏开始
+ * 2 游戏暂停
+ * 3 游戏继续
+ * 4 游戏失败
+ * 5 游戏成功
+ */
+export const GameStatus = {
+  GAME_NOT_START: 0,
+  GAME_ON: 1,
+  GAME_PAUSED: 2,
+  GAME_CONTINUED: 3,
+  GAME_FAILED: 4,
+  GAME_SUCCESS: 5
+}
+
+/**
+ * 定义游戏等级
+ * 0 简单
+ * 1 中级
+ * 2 困难
+ * 3 超难
+ */
+export const GameLevel = {
+  SIMPLE: 0,
+  MEDIUM: 1,
+  HARD: 2,
+  SUPER: 3
+}
+
+/**
  * 初始化一个空二维数组
  * @param { Number } level 当前等级
  */
@@ -143,7 +175,10 @@ export const traverseMatrix = (matrix, cell, level) => {
   return around;
 }
 
-
+/**
+ * 地雷状态统计
+ * @param {Array} matrix 游戏矩阵
+ */
 export const mineStatistics = (matrix) => {
   let notRevealed = 0
   let flagged = 0

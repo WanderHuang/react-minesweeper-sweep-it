@@ -8,7 +8,7 @@ const initMatrix = (level) => {
   return withValues
 }
 
-const matrix = (state = initMatrix(0), action) => {
+const matrix = (state = initMatrix(util.GameLevel.MEDIUM), action) => {
   switch(action.type) {
     case CHANGE_MATRIX:
       return action.payload;

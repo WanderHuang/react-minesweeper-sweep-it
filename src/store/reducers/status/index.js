@@ -1,8 +1,8 @@
 import { CHANGE_STATUS } from '../../types';
 
-const initState = true;
+const initState = 0;
 
-const status = (state = initState, action) => {
+const gameStatus = (state = initState, action) => {
   switch(action.type) {
     case CHANGE_STATUS: {
       return action.payload;
@@ -12,4 +12,4 @@ const status = (state = initState, action) => {
   }
 }
 
-export default status;
+export default gameStatus;

@@ -3,43 +3,81 @@
   & .board {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     > .info {
+      font-size: 1.2em;
+      width: 14em;
+      margin-right: 1em;
       > .line {
+        height: 2.5em;
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: space-between;
+        > .title {
+          width: 8em;
+          font-weight: 500;
+        }
+        select {
+          width: 6em;
+          height: 2em;
+          border-radius: 0.25em;
+          font-size: 1.1em;
+          -webkit-appearance: none;
+          padding: 0px 10px;
+        }
+        select:focus {
+          outline: none;
+        }
+        button {
+          width: 5em;
+          border-radius: 0.25em;
+          height: 2em;
+          background: #bebebe;
+          font-size: 1.2em;
+        }
+        button:focus {
+          outline: none;
+        }
       }
     }
     > .zone {
       > .matrix {
         display: flex;
         flex-direction: column;
+        $borderColor: black;
         > .row {
           display: flex;
           flex-direction: row;
+          border-top: 1px solid $borderColor;
           > .cell {
-            width: 40px;
-            height: 40px;
-            border: 1px dashed gray;
+            width: 2em;
+            height: 2em;
+            border-left: 1px solid $borderColor;
             @mixin full-block {
-              width: 40px;
-              height: 40px;
+              width: 2em;
+              height: 2em;
               text-align: center;
-              line-height: 40px;
+              line-height: 2em;
             }
             > .block {
               @include  full-block;
-              background: gray;
+              background: #98c9f5;
             }
             > .revealed-block {
               @include full-block;
               background: white;
             }
           }
+          > .cell:last-child {
+            border-right: 1px solid $borderColor;
+          }
           > .cell:hover {
             cursor: pointer;
           }
+        }
+        > .row:last-child {
+          border-bottom: 1px solid $borderColor;
         }
       }
     }

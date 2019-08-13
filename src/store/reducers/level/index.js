@@ -1,6 +1,7 @@
 import { CHANGE_LEVEL } from '../../types';
+import { GameLevel } from '../../../util';
 
-const initState = 0;
+const initState = GameLevel.MEDIUM;
 
 const level = (state = initState, action) => {
   switch(action.type) {

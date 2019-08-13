@@ -5,15 +5,14 @@ import './App.scss';
 import Board from './components/Board';
 class App extends React.Component {
   render() {
-    const { matrix, level, status } = this.props
-    console.log('matrix, level, status', matrix, level, status)
+    const { matrix, level, gameStatus } = this.props
     return (
       <div className="app">
-        <h6>This is a minesweeper game!</h6>
+        <h1>This is a minesweeper game!</h1>
         <Board
           matrix={matrix}
           level={level}
-          status={status}
+          status={gameStatus}
         ></Board>
       </div>
     )
