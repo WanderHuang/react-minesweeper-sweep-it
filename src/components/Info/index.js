@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { changeLevel, initMatrix, changeStatus } from '../../store/actions';
-import { mapLevel, GameStatus } from '../../util';
+import { mapLevel, GameStatus } from '../../constant';
 
 class Info extends React.Component {
   _levelChange (event) {

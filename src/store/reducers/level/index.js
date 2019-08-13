@@ -1,5 +1,5 @@
 import { CHANGE_LEVEL } from '../../types';
-import { GameLevel } from '../../../util';
+import { GameLevel } from '../../../constant';
 
 const initState = GameLevel.MEDIUM;
 
