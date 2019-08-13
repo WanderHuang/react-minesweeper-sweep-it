@@ -1,68 +1,33 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 扫雷游戏
 
-## Available Scripts
+#### 规则
 
-In the project directory, you can run:
+1. 在n * n的矩阵内，找出所有的地雷
+2. 鼠标左击表示翻开，右击表示标记或取消标记
+3. 翻开方块时，如果是地雷，游戏结束
+4. 每个方块中的数字表示周围一圈（八个）九宫格内，存在的地雷总数
+5. 翻开空白方块时，自动翻开周围方块
 
-### `npm start`
+#### 已完成
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. 切换难度
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+2. 展示数据
 
-### `npm test`
+3. 暂停\继续(为计时做准备)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. 从新开始
 
-### `npm run build`
+5. 游戏状态记录和展示
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### 待完成
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+1. 一个良好的界面展示..
+2. 添加计时功能
+3. 自定义格子(M * N)
+4. 更多功能按钮
+5. 设备自适应
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### 更新记录
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+1. [20190813]: 完成基本功能。游戏基本可玩
