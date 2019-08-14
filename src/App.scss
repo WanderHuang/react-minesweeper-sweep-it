@@ -34,7 +34,8 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: 0 1em;
+        margin: 0 1em;
+        border-bottom: 1px solid $gray;
         > .title {
           width: 8em;
           font-weight: 500;
