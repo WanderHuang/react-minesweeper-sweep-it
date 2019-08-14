@@ -7,6 +7,7 @@ import { isSuccess, replaceAllCellStatus } from './helper';
 import { Emojis } from '../../constant';
 // 组件
 import Emoji from '../Emoji';
+import CellFont from './CellFont';
 class Cell extends React.Component {
 
   renderCellContent (cell) {
@@ -18,16 +19,24 @@ class Cell extends React.Component {
         );
       case CellTypes.CELL_NULL:
         return (
-          <div className="revealed-block"></div>
+          <div className="revealed-block">
+            <Emoji emoji={ Emojis.MONKEY }></Emoji>
+          </div>
         );
       case CellTypes.CELL_NUMBER:
         return (
-          <div className="revealed-block">{value}</div>
+          <div className="revealed-block">
+            <CellFont content={ value }/>
+          </div>
         );
       case CellTypes.CELL_MINE:
         return (
           <div className="revealed-block">
-            {isMine ? <Emoji emoji={ Emojis.MINE }></Emoji> : ''}
+            {
+              isMine ?
+              <Emoji emoji={ Emojis.MINE }></Emoji> :
+              <Emoji emoji={ Emojis.MONKEY }></Emoji>
+            }
           </div>
         );
       case CellTypes.CELL_FLAG:

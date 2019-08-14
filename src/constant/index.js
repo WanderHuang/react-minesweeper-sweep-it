@@ -125,6 +125,10 @@ export const Emojis = {
     content: '🕒',
     description: 'time(s)'
   },
+  MONKEY: {
+    content: '🙈',
+    description: 'Monkey see nothing'
+  },
   FLAG: {
     content: '⛳',
     description: 'Flagged Block'
@@ -153,4 +157,16 @@ export const Emojis = {
     content: '🙌',
     description: 'Game Success'
   }
+}
+
+export const NumberColors = {
+  MINE_0: '#000000',
+  MINE_1: '#00CCFF',
+  MINE_2: '#00CC33',
+  MINE_3: '#FF9966',
+  MINE_4: '#0000FF',
+  MINE_5: '#9900FF',
+  MINE_6: '#CC0099',
+  MINE_7: '#000099',
+  MINE_8: '#FF0000'
 }
