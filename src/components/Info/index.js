@@ -8,6 +8,10 @@ import Emoji from '../Emoji';
 import Clock from '../Clock';
 
 class Info extends React.Component {
+  constructor (props) {
+    super(props);
+    this.refClock = React.createRef();
+  }
   // 【等级变更】响应
   _levelChange (event) {
     event.preventDefault();
@@ -20,6 +24,7 @@ class Info extends React.Component {
     event.preventDefault();
     const { level, restart } = this.props;
     restart(level);
+    this.refClock.current.resetClock(0);
   }
   // 【暂停】响应
   _pause (event) {
@@ -45,6 +50,7 @@ class Info extends React.Component {
     }
   }
 
+  // 渲染按钮文字
   renderPauseButtonContent (status) {
     switch (status) {
       case GameStatus.GAME_PAUSED:
@@ -91,7 +97,7 @@ class Info extends React.Component {
           <Emoji emoji={ Emojis.INFO_GAME_STATUS }></Emoji>
           { <Emoji emoji={ this.renderGameStatus(gameStatus) } css="content-right"></Emoji> }
         </div>
-        <Clock />
+        <Clock ref={this.refClock}/>
         <div className="line">
           <button className="pause" onClick={ this._pause.bind(this) }>{ this.renderPauseButtonContent(gameStatus) }</button>
           <button className="restart" onClick={ this._restart.bind(this) }>Restart</button>
@@ -109,12 +115,17 @@ const mapDispatchToProps = (dispatch) => {
   return {
     levelChange: ({ target }) => {
       const level = Number(target.value)
+      // 修改游戏难度
       dispatch(changeLevel(level));
+      // 初始化游戏矩阵
       dispatch(initMatrix(level));
+      // 修改游戏状态
       dispatch(changeStatus(GameStatus.GAME_NOT_START));
     },
     restart: (level) => {
+      // 重置矩阵
       dispatch(initMatrix(level));
+      // 重置游戏状态
       dispatch(changeStatus(GameStatus.GAME_ON));
     },
     pause: (gameStatus) => {

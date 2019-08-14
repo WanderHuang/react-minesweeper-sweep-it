@@ -24,6 +24,11 @@ class Clock extends React.Component {
       clearInterval(this.timer)
     }
   }
+
+  resetClock(time = 0) {
+    this.setState({ time })
+  }
+
   render () {
     const { time } = this.state;
     return (
@@ -52,4 +57,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps)(Clock);
+export default connect(mapStateToProps, null, null, { forwardRef: true })(Clock);
