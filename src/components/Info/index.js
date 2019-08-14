@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 // 工具
-import { changeLevel, initMatrix, changeStatus } from '../../store/actions';
+import { changeLevel, initMatrix, changeStatus, changeAnimationStatus } from '../../store/actions';
 import { mapLevel, GameStatus, Emojis } from '../../constant';
 // 组件
 import Emoji from '../Emoji';
@@ -40,6 +40,13 @@ class Info extends React.Component {
     const { gameStatus, pause } = this.props;
     pause(gameStatus);
   }
+  // 确定是否使用动画
+  _toggleAnimation (event) {
+    event.preventDefault();
+    const { toggleAnimation, animationStatus } = this.props;
+    toggleAnimation(animationStatus);
+  }
+
   // 渲染游戏状态
   renderGameStatus (gameStatus) {
     switch (gameStatus) {
@@ -68,13 +75,22 @@ class Info extends React.Component {
     }
   }
 
+  // 渲染背景动画
+  renderAnimationButtonContent (status) {
+    if (status) {
+      return 'Static'
+    } else {
+      return 'Dynamic'
+    }
+  }
+
   // 渲染等级emoji
   renderLevelEmoji (level) {
     return [Emojis.GAME_EASY, Emojis.GAME_MEDIUM, Emojis.GAME_HARD, Emojis.GAME_SUPER][level];
   }
 
   render() {
-    const { level, gameStatus, mine } = this.props
+    const { level, gameStatus, mine, animationStatus } = this.props
     return (
       <div className="info">
         {
@@ -117,6 +133,7 @@ class Info extends React.Component {
         </div>
         <Clock ref={this.refClock}/>
         <div className="line">
+          <button className="animation" onClick={ this._toggleAnimation.bind(this) }>{ this.renderAnimationButtonContent(animationStatus) }</button>
           <button className="pause" onClick={ this._pause.bind(this) }>{ this.renderPauseButtonContent(gameStatus) }</button>
           <button className="restart" onClick={ this._restart.bind(this) }>Restart</button>
         </div>
@@ -156,6 +173,9 @@ const mapDispatchToProps = (dispatch) => {
       ) {
         dispatch(changeStatus(GameStatus.GAME_PAUSED))
       }
+    },
+    toggleAnimation: (animation) => {
+      dispatch(changeAnimationStatus(!animation))
     }
   };
 }

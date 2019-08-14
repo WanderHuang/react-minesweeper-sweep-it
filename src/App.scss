@@ -1,12 +1,23 @@
+@keyframes transition-bg {
+  0% {
+    background: #e9defa;
+  }
+  50% {
+    background: #fbfcdb;
+  }
+  100% {
+    background: #e9defa;
+  }
+}
 .app {
   font-size: 16px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
   $blockColor: #98c9f5;
   $restartColor: #5cb85c;
   $pauseColor: #5bc0de;
+  $animationColor: #FA8072;
   $whiteColor: #fff;
   $gray: #bebebe;
   @mixin block {
@@ -32,13 +43,13 @@
     > .info {
       font-size: 1.2em;
       width: 14em;
+      margin: 0 1em;
       > .line {
         height: 2.5em;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        margin: 0 1em;
         border-bottom: 1px solid $gray;
         > .title {
           width: 8em;
@@ -75,6 +86,10 @@
           background: $pauseColor;
           border-color: $pauseColor;
         }
+        .animation {
+          background: $animationColor;
+          border-color: $animationColor;
+        }
       }
     }
     > .zone {
@@ -109,6 +124,22 @@
         > .row:last-child {
           border-bottom: 1px solid $borderColor;
         }
+      }
+    }
+
+    > section {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      font-weight: 500;
+      margin-left: 1em;
+      > .line {
+        margin: 1em 0;
+      }
+      > .line:first-child {
+        margin: 0;
+        font-size: 1.4em;
       }
     }
     

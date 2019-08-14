@@ -170,3 +170,15 @@ export const NumberColors = {
   MINE_7: '#000099',
   MINE_8: '#FF0000'
 }
+
+/**
+ * 定义动画
+ */
+export const Animations = [
+  {
+    'backgroundImage': 'linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%)'
+  },
+  {
+    'animation': 'transition-bg 10s infinite reverse'
+  }
+]

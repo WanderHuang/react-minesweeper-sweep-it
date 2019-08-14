@@ -32,3 +32,10 @@ export function resetClock (payload) {
     payload
   }
 }
+
+export function changeAnimationStatus (payload) {
+  return {
+    type: types.CHANGE_ANIMATION_STATUS,
+    payload
+  }
+}
