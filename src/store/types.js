@@ -6,3 +6,5 @@ export const CHANGE_MATRIX = 'CHANGE_MATRIX'
 export const CHANGE_STATUS = 'CHANGE_STATUS'
 // 初始化matrix
 export const INIT_MATRIX = 'INIT_MATRIX'
+// 切换时钟状态
+export const CHANGE_CLOCK_STATUS = 'CHANGE_CLOCK_STATUS'

@@ -5,6 +5,7 @@ import { changeLevel, initMatrix, changeStatus } from '../../store/actions';
 import { mapLevel, GameStatus, Emojis } from '../../constant';
 // 组件
 import Emoji from '../Emoji';
+import Clock from '../Clock';
 
 class Info extends React.Component {
   // 【等级变更】响应
@@ -90,6 +91,7 @@ class Info extends React.Component {
           <Emoji emoji={ Emojis.INFO_GAME_STATUS }></Emoji>
           { <Emoji emoji={ this.renderGameStatus(gameStatus) } css="content-right"></Emoji> }
         </div>
+        <Clock />
         <div className="line">
           <button className="pause" onClick={ this._pause.bind(this) }>{ this.renderPauseButtonContent(gameStatus) }</button>
           <button className="restart" onClick={ this._restart.bind(this) }>Restart</button>

@@ -1,5 +1,5 @@
-import * as types from '../types'
-
+import * as types from '../types';
+import { GameStatus } from '../../constant';
 export function changeLevel (payload) {
   return {
     type: types.CHANGE_LEVEL,
@@ -23,6 +23,13 @@ export function initMatrix (payload) {
 export function changeStatus (payload) {
   return {
     type: types.CHANGE_STATUS,
+    payload
+  }
+}
+
+export function resetClock (payload) {
+  return {
+    type: types.CHANGE_CLOCK_STATUS,
     payload
   }
 }

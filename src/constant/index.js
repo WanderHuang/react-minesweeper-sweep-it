@@ -76,6 +76,16 @@ export const GameLevel = {
 }
 
 /**
+ * 定义时钟状态
+ * 0 停止
+ * 1 继续
+ */
+export const ClockStatus = {
+  STOP: 0,
+  CONTINUE: 1
+}
+
+/**
  * 系统级Emoji定义
  */
 export const Emojis = {
@@ -110,6 +120,10 @@ export const Emojis = {
   INFO_GAME_BLOCK: {
     content: '⬛',
     description: 'Blocks'
+  },
+  INFO_CLOCK: {
+    content: '🕒',
+    description: 'time(s)'
   },
   FLAG: {
     content: '⛳',
