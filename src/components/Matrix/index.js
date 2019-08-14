@@ -5,7 +5,7 @@ class Matrix extends React.Component {
   render () {
     const { matrix, level } = this.props;
     return (
-      <div className="matrix" style={{'font-size': [18, 16, 14, 12][level] + 'px'}}>
+      <div className="matrix" style={{fontSize: [18, 16, 14, 12][level] + 'px'}}>
         {
           matrix.map((row, index) => {
             return (
