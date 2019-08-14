@@ -1,5 +1,4 @@
 import * as types from '../types';
-import { GameStatus } from '../../constant';
 export function changeLevel (payload) {
   return {
     type: types.CHANGE_LEVEL,
