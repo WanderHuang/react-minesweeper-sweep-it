@@ -7,20 +7,24 @@
  */
 export const mapLevel = [
   {
+    // 0.08
     baseCount: 8,
     mineCount: 10
   },
   {
-    baseCount: 12,
-    mineCount: 20
+    // 0.11
+    baseCount: 15,
+    mineCount: 25
   },
   {
+    // 0.15
     baseCount: 16,
-    mineCount: 30
+    mineCount: 40
   },
   {
+    // 0.2
     baseCount: 20,
-    mineCount: 40
+    mineCount: 80
   }
 ]
 /**
