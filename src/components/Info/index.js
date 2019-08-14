@@ -7,24 +7,26 @@ import { mapLevel, GameStatus, Emojis } from '../../constant';
 import Emoji from '../Emoji';
 
 class Info extends React.Component {
+  // 【等级变更】响应
   _levelChange (event) {
     event.preventDefault();
     const { levelChange } = this.props;
     levelChange(event);
   }
 
+  // 【重新开始】响应
   _restart (event) {
     event.preventDefault();
     const { level, restart } = this.props;
     restart(level);
   }
-
+  // 【暂停】响应
   _pause (event) {
     event.preventDefault();
     const { gameStatus, pause } = this.props;
     pause(gameStatus);
   }
-
+  // 渲染游戏状态
   renderGameStatus (gameStatus) {
     switch (gameStatus) {
       case GameStatus.GAME_NOT_START:
@@ -40,26 +42,6 @@ class Info extends React.Component {
       default:
         return Emojis.GAME_PLAYING;
     }
-  }
-
-  renderData (mine, level) {
-    const { mineCount } = mapLevel[level]
-    return (
-      <React.Fragment>
-        <div className="line">
-          <Emoji emoji={ Emojis.INFO_GAME_BLOCK }></Emoji>
-          <span>{ mine.notRevealed }</span>
-        </div>
-        <div className="line">
-          <Emoji emoji={ Emojis.FLAG }></Emoji>
-          <span>{ mine.flagged }</span>
-        </div>
-        <div className="line">
-          <Emoji emoji={ Emojis.MINE }></Emoji>
-          <span>{ mineCount }</span>
-        </div>
-      </React.Fragment>
-    )
   }
 
   renderPauseButtonContent (status) {
@@ -88,7 +70,22 @@ class Info extends React.Component {
           <Emoji emoji={ Emojis.INFO_LEVEL }></Emoji>
           <span>{ [Emojis.GAME_EASY.content, Emojis.GAME_MEDIUM.content, Emojis.GAME_HARD.content, Emojis.GAME_SUPER.content][level] }</span>
         </div>
-        { this.renderData(mine, level) }
+        { 
+          <React.Fragment>
+            <div className="line">
+              <Emoji emoji={ Emojis.INFO_GAME_BLOCK }></Emoji>
+              <span>{ mine.notRevealed }</span>
+            </div>
+            <div className="line">
+              <Emoji emoji={ Emojis.FLAG }></Emoji>
+              <span>{ mine.flagged }</span>
+            </div>
+            <div className="line">
+              <Emoji emoji={ Emojis.MINE }></Emoji>
+              <span>{ mapLevel[level].mineCount }</span>
+            </div>
+          </React.Fragment>
+        }
         <div className="line">
           <Emoji emoji={ Emojis.INFO_GAME_STATUS }></Emoji>
           { <Emoji emoji={ this.renderGameStatus(gameStatus) } css="content-right"></Emoji> }

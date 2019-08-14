@@ -18,8 +18,11 @@ class Matrix extends React.Component {
   }
 }
 
+// 从state中映射matrix到Matrix组件
 const mapStateToProps = (state) => {
-  return state
+  return {
+    matrix: state.matrix
+  }
 }
 
 export default connect(mapStateToProps)(Matrix)

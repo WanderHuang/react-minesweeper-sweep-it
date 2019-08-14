@@ -23,7 +23,7 @@ export const isSuccess = (matrix) => {
  * @param {*} level 游戏等级
  * @param {*} onContextMenu 是否右键
  */
-export function replaceAllCellStatus (matrix, cell, level, onContextMenu) {
+export const replaceAllCellStatus = (matrix, cell, level, onContextMenu) => {
   const { rowIndex, colIndex, status, isMine, value } = cell
   const nextMatrix = JSON.parse(JSON.stringify(matrix))
   let nextStatus = status
@@ -68,7 +68,7 @@ export function replaceAllCellStatus (matrix, cell, level, onContextMenu) {
  * @param {*} cell 一个单元
  * @param {*} level 游戏等级
  */
-function revealEmptyCell (matrix, cell, level) {
+export const revealEmptyCell = (matrix, cell, level) => {
   const around = traverseMatrix(matrix, cell, level);
   around.forEach((block) => {
     const { status, value, isMine } = block
@@ -89,7 +89,7 @@ function revealEmptyCell (matrix, cell, level) {
  * 翻开所有的单元
  * @param {*} matrix 游戏矩阵
  */
-function revealAllCell (matrix) {
+export const revealAllCell = (matrix) => {
   matrix.forEach((row) => {
     row.forEach((cell) => {
       if (cell.isMine) {
