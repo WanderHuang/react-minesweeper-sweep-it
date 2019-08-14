@@ -91,8 +91,8 @@ class Info extends React.Component {
           { <Emoji emoji={ this.renderGameStatus(gameStatus) } css="content-right"></Emoji> }
         </div>
         <div className="line">
-          <button onClick={ this._pause.bind(this) }>{ this.renderPauseButtonContent(gameStatus) }</button>
-          <button onClick={ this._restart.bind(this) }>Restart</button>
+          <button className="pause" onClick={ this._pause.bind(this) }>{ this.renderPauseButtonContent(gameStatus) }</button>
+          <button className="restart" onClick={ this._restart.bind(this) }>Restart</button>
         </div>
       </div>
     )

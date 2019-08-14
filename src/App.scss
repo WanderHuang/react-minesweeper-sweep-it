@@ -1,7 +1,12 @@
 .app {
   font-size: 16px;
+  $blockColor: #98c9f5;
+  $restartColor: #5cb85c;
+  $pauseColor: #5bc0de;
+  $whiteColor: #fff;
+  $gray: #bebebe;
   @mixin block {
-    background: #98c9f5;
+    background: $blockColor;
   }
   @mixin full-block {
     width: 2em;
@@ -12,6 +17,9 @@
   }
   .content-right {
     text-align: end;
+  }
+  & h1 {
+    padding-left: 4em;
   }
   & .board {
     display: flex;
@@ -47,11 +55,19 @@
           width: 5em;
           border-radius: 0.25em;
           height: 2em;
-          background: #bebebe;
-          font-size: 1.2em;
+          background: $gray;
+          font-size: 0.9em;
         }
         button:focus {
           outline: none;
+        }
+        .restart {
+          background: $restartColor;
+          border-color: $restartColor;
+        }
+        .pause {
+          background: $pauseColor;
+          border-color: $pauseColor;
         }
       }
     }
@@ -74,7 +90,7 @@
             }
             > .revealed-block {
               @include full-block;
-              background: white;
+              background: $whiteColor;
             }
           }
           > .cell:last-child {
