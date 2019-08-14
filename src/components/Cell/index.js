@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+// 工具
 import { CellTypes, GameStatus } from '../../constant';
 import { changeMatrix, changeStatus } from '../../store/actions';
 import { isSuccess, replaceAllCellStatus } from './helper'
-
+// 组件
+import Emoji from '../Emoji';
 class Cell extends React.Component {
 
   renderCellContent (cell) {
@@ -23,12 +25,12 @@ class Cell extends React.Component {
         );
       case CellTypes.CELL_MINE:
         return (
-          <div className="revealed-block">{isMine ? <span role="img" aria-label="flag">💣</span> : ''}</div>
+          <div className="revealed-block">{isMine ? <Emoji content="💣"></Emoji> : ''}</div>
         );
       case CellTypes.CELL_FLAG:
         return (
           <div className="block">
-            <span role="img" aria-label="flag">⛳</span>
+            <Emoji content="⛳"></Emoji>
           </div>
         );
       default:

@@ -70,3 +70,69 @@ export const GameLevel = {
   HARD: 2,
   SUPER: 3
 }
+
+/**
+ * 系统级Emoji定义
+ */
+export const Emojis = {
+  GAME_EASY: {
+    content: '😀',
+    description: 'Easy'
+  },
+  GAME_MEDIUM: {
+    content: '😃',
+    description: 'Medium'
+  },
+  GAME_HARD: {
+    content: '😅',
+    description: 'Hard'
+  },
+  GAME_SUPER: {
+    content: '😨',
+    description: 'Super'
+  },
+  INFO_LEVEL_CHOICE: {
+    content: '🎲',
+    description: 'Level choice'
+  },
+  INFO_LEVEL: {
+    content: '🌡️',
+    description: 'Current Level'
+  },
+  INFO_GAME_STATUS: {
+    content: '🕹️',
+    description: 'Game Status'
+  },
+  INFO_GAME_BLOCK: {
+    content: '⬛',
+    description: 'Blocks'
+  },
+  FLAG: {
+    content: '⛳',
+    description: 'Flagged Block'
+  },
+  MINE: {
+    content: '💣',
+    description: 'Mine'
+  },
+  GAME_FAILED: {
+    content: '☠️',
+    description: 'Game Over'
+  },
+  GAME_PLAYING: {
+    content: '🎮',
+    description: 'On Game'
+  },
+  GAME_PAUSED: {
+    content: '⏸️',
+    description: 'Paused'
+  },
+  GAME_IDLE: {
+    content: '💤',
+    description: 'Idle'
+  },
+  GAME_SUCCESS: {
+    content: '🙌',
+    description: 'Game Success'
+  }
+}

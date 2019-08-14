@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+// 工具
 import { changeLevel, initMatrix, changeStatus } from '../../store/actions';
-import { mapLevel, GameStatus } from '../../constant';
+import { mapLevel, GameStatus, Emojis } from '../../constant';
+// 组件
+import Emoji from '../Emoji';
 
 class Info extends React.Component {
   _levelChange (event) {
@@ -22,22 +25,20 @@ class Info extends React.Component {
     pause(gameStatus);
   }
 
-  renderInfo (gameStatus) {
+  renderGameStatus (gameStatus) {
     switch (gameStatus) {
       case GameStatus.GAME_NOT_START:
-        return (<span>To be start</span>);
-      case GameStatus.GAME_ON:
-        return (<span>On Game</span>);
+        return Emojis.GAME_IDLE;
       case GameStatus.GAME_PAUSED:
-        return (<span>Game Paused</span>);
-      case GameStatus.GAME_CONTINUED:
-        return (<span>On Game</span>);
+        return Emojis.GAME_PAUSED;
       case GameStatus.GAME_FAILED:
-        return (<span>Game Failed</span>);
+        return Emojis.GAME_FAILED;
       case GameStatus.GAME_SUCCESS:
-        return (<span style={{color: 'red'}}>Game Success</span>);
+        return Emojis.GAME_SUCCESS;
+      case GameStatus.GAME_ON:
+      case GameStatus.GAME_CONTINUED:
       default:
-        return (<span>On Game</span>);
+        return Emojis.GAME_PLAYING;
     }
   }
 
@@ -46,15 +47,15 @@ class Info extends React.Component {
     return (
       <React.Fragment>
         <div className="line">
-          <span className="title">Remain Block</span>
+          <Emoji emoji={ Emojis.INFO_GAME_BLOCK }></Emoji>
           <span>{ mine.notRevealed }</span>
         </div>
         <div className="line">
-          <span className="title">Flagged Block</span>
+          <Emoji emoji={ Emojis.FLAG }></Emoji>
           <span>{ mine.flagged }</span>
         </div>
         <div className="line">
-          <span className="title">Should Find</span>
+          <Emoji emoji={ Emojis.MINE }></Emoji>
           <span>{ mineCount }</span>
         </div>
       </React.Fragment>
@@ -75,23 +76,22 @@ class Info extends React.Component {
     return (
       <div className="info">
         <div className="line">
-          <span className="title">Level Select:</span>
+          <Emoji emoji={ Emojis.INFO_LEVEL_CHOICE }></Emoji>
           <select name="levelSelector" value={level} onChange={ this._levelChange.bind(this) }>
-            <option value="0">simple</option>
-            <option value="1">medium</option>
-            <option value="2">hard</option>
-            <option value="3">super</option>
+            <option value="0">{ Emojis.GAME_EASY.content }</option>
+            <option value="1">{ Emojis.GAME_MEDIUM.content }</option>
+            <option value="2">{ Emojis.GAME_HARD.content }</option>
+            <option value="3">{ Emojis.GAME_SUPER.content }</option>
           </select>
         </div>
         <div className="line">
-          <span className="title">Current Level</span>
-          <span>{ ['simple', 'medium', 'hard', 'super'][level] }</span>
+          <Emoji emoji={ Emojis.INFO_LEVEL }></Emoji>
+          <span>{ [Emojis.GAME_EASY.content, Emojis.GAME_MEDIUM.content, Emojis.GAME_HARD.content, Emojis.GAME_SUPER.content][level] }</span>
         </div>
         { this.renderData(mine, level) }
-        
         <div className="line">
-          <span className="title">Current Status</span>
-          { this.renderInfo(gameStatus) }
+          <Emoji emoji={ Emojis.INFO_GAME_STATUS }></Emoji>
+          { <Emoji emoji={ this.renderGameStatus(gameStatus) } css="content-right"></Emoji> }
         </div>
         <div className="line">
           <button onClick={ this._pause.bind(this) }>{ this.renderPauseButtonContent(gameStatus) }</button>
