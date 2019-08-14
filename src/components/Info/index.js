@@ -13,10 +13,18 @@ class Info extends React.Component {
     this.refClock = React.createRef();
   }
   // 【等级变更】响应
-  _levelChange (event) {
+  _levelChangeEvent (event) {
     event.preventDefault();
     const { levelChange } = this.props;
     levelChange(event);
+  }
+
+  _levelClickEvent (event) {
+    event.preventDefault();
+    const { level, levelChange } = this.props;
+    let value = level + 1
+    value = value > 3 ? 0 : value
+    levelChange({ target: { value }})
   }
 
   // 【重新开始】响应
@@ -60,22 +68,32 @@ class Info extends React.Component {
     }
   }
 
+  // 渲染等级emoji
+  renderLevelEmoji (level) {
+    return [Emojis.GAME_EASY, Emojis.GAME_MEDIUM, Emojis.GAME_HARD, Emojis.GAME_SUPER][level];
+  }
+
   render() {
     const { level, gameStatus, mine } = this.props
     return (
       <div className="info">
-        <div className="line">
-          <Emoji emoji={ Emojis.INFO_LEVEL_CHOICE }></Emoji>
-          <select name="levelSelector" value={level} onChange={ this._levelChange.bind(this) }>
-            <option value="0">{ Emojis.GAME_EASY.content }</option>
-            <option value="1">{ Emojis.GAME_MEDIUM.content }</option>
-            <option value="2">{ Emojis.GAME_HARD.content }</option>
-            <option value="3">{ Emojis.GAME_SUPER.content }</option>
-          </select>
-        </div>
+        {
+          /* 
+          去除这个select框 用点击emoji代替
+          <div className="line">
+            <Emoji emoji={ Emojis.INFO_LEVEL_CHOICE }></Emoji>
+            <select name="levelSelector" value={level} onChange={ this._levelChangeEvent.bind(this) }>
+              <option className="option" value="0">{ Emojis.GAME_EASY.content }</option>
+              <option className="option" value="1">{ Emojis.GAME_MEDIUM.content }</option>
+              <option className="option" value="2">{ Emojis.GAME_HARD.content }</option>
+              <option className="option" value="3">{ Emojis.GAME_SUPER.content }</option>
+            </select>
+          </div> 
+          */
+        }
         <div className="line">
           <Emoji emoji={ Emojis.INFO_LEVEL }></Emoji>
-          <span>{ [Emojis.GAME_EASY.content, Emojis.GAME_MEDIUM.content, Emojis.GAME_HARD.content, Emojis.GAME_SUPER.content][level] }</span>
+          <Emoji emoji={ this.renderLevelEmoji(level)} onClick={ this._levelClickEvent.bind(this) } css="content-right"></Emoji>
         </div>
         { 
           <React.Fragment>

@@ -3,6 +3,7 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
   $blockColor: #98c9f5;
   $restartColor: #5cb85c;
   $pauseColor: #5bc0de;
@@ -50,7 +51,8 @@
           border-radius: 0.25em;
           font-size: 1.1em;
           -webkit-appearance: none;
-          padding: 0px 10px;
+          padding-left: 3em;
+          background: transparent;
         }
         select:focus {
           outline: none;
@@ -94,7 +96,7 @@
             }
             > .revealed-block {
               @include full-block;
-              background: $whiteColor;
+              background: transparent;
             }
           }
           > .cell:last-child {
