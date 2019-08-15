@@ -19,7 +19,7 @@ export default class Board extends React.Component {
             <span>* </span>
             <span>Click </span>
             <Emoji emoji={ Emojis.GAME_MEDIUM } />
-            <span> can change the degree of dificulty</span>
+            <span> can change the degree of difficulty</span>
           </div>
         </section>
       </div>
