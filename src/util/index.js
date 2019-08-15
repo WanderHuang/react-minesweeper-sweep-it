@@ -1,4 +1,4 @@
-import { mapLevel, CellTypes } from '../constant'
+import { mapLevel, CellTypes, Emojis } from '../constant'
 /**
  * 初始化一个空二维数组
  * @param { Number } level 当前等级
@@ -123,5 +123,54 @@ export const mineStatistics = (matrix) => {
   return {
     notRevealed,
     flagged
+  }
+}
+
+/**
+ * 产生随机的emoji矩阵
+ * @param {Number} level 
+ */
+export const randomMediaFrame = (level = 3) => {
+  const matrix = createEmptyMatrix(level);
+  const emojiArray = Object.keys(Emojis);
+  const emojiCount = emojiArray.length;
+  return matrix.map((row) => {
+    return row.map((cell) => {
+      const random = Math.random() * emojiCount | 0
+      return {
+        rowIndex: cell.rowIndex,
+        colIndex: cell.colIndex,
+        status: CellTypes.CELL_NULL,
+        isMine: false,
+        isEmoji: true,
+        emoji: Emojis[emojiArray[random]],
+        value: 0
+      }
+    })
+  })
+}
+
+/**
+ * 产生失败的矩阵
+ * @param {Number} level 
+ */
+export const failedMediaFrame = (matrix, endPosX, endPosY) => {
+  let i = 0;
+  let j = 0;
+  for (; i < matrix.length; i++) {
+    const colCount = matrix[i].length
+    for (; j < colCount; j++) {
+      if (i * colCount + j <= endPosX * colCount + endPosY) {
+        matrix[i][j].isEmoji = true
+        matrix[i][j].emoji = Emojis.GAME_FAILED
+      } else {
+        break;
+      }
+    }
+  }
+  return {
+    matrix: JSON.parse(JSON.stringify(matrix)),
+    i,
+    j
   }
 }

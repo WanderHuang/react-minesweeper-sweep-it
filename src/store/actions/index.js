@@ -39,3 +39,10 @@ export function changeAnimationStatus (payload) {
     payload
   }
 }
+
+export function changeMediaMatrix (payload) {
+  return {
+    type: types.CHANGE_MEDIA,
+    payload
+  }
+}

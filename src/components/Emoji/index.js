@@ -1,7 +1,7 @@
 import React from 'react';
 export default class Emoji extends React.Component {
   render () {
-    let { content, title, emoji, css, onClick } = this.props;
+    let { content, title, emoji, css, onClick, cursor } = this.props;
     if (emoji) {
       content = emoji.content
       title = emoji.description
@@ -9,7 +9,7 @@ export default class Emoji extends React.Component {
     return (
       <span
         className={"title " + css}
-        style={{cursor: onClick ? 'pointer': 'default'}}
+        style={{cursor: cursor || onClick ? 'pointer': 'default'}}
         role="img"
         aria-label="flag"
         title={ title }

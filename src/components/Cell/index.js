@@ -11,7 +11,7 @@ import CellFont from './CellFont';
 class Cell extends React.Component {
 
   renderCellContent (cell) {
-    const { status, isMine, value } = cell
+    const { status, isMine, value, isEmoji, emoji } = cell
     switch (status) {
       case CellTypes.CELL_NOT_REVEAL:
         return (
@@ -20,7 +20,7 @@ class Cell extends React.Component {
       case CellTypes.CELL_NULL:
         return (
           <div className="revealed-block">
-            <Emoji emoji={ Emojis.MONKEY }></Emoji>
+            <Emoji emoji={ isEmoji ? emoji : Emojis.MONKEY } cursor></Emoji>
           </div>
         );
       case CellTypes.CELL_NUMBER:
@@ -85,11 +85,13 @@ const mapDispatchToProps = (dispatch, props) => {
   return {
     blockRevealed: (cell, matrix, level, gameStatus) => {
       // 游戏暂停、胜利、失败；或者当前方块被标记的情况下 不响应左击事件
+      // 新增：单元为纯图像不触发左击事件
       if (
         gameStatus === GameStatus.GAME_PAUSED ||
         gameStatus === GameStatus.GAME_SUCCESS ||
         gameStatus === GameStatus.GAME_FAILED ||
-        cell.status === CellTypes.CELL_FLAG
+        cell.status === CellTypes.CELL_FLAG ||
+        cell.isEmoji
       ) {
         return
       }
@@ -110,10 +112,12 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     blockFlagged: (cell, matrix, level, gameStatus) => {
       // 游戏暂停、胜利、失败的情况下 不响应右击事件
+      // 新增：单元为纯图像不触发右击事件
       if (
         gameStatus === GameStatus.GAME_PAUSED ||
         gameStatus === GameStatus.GAME_SUCCESS ||
-        gameStatus === GameStatus.GAME_FAILED
+        gameStatus === GameStatus.GAME_FAILED ||
+        cell.isEmoji
       ) {
         return
       }

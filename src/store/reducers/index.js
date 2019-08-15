@@ -5,6 +5,7 @@ import gameStatus from './status'
 import mine from './mine'
 import clockStatus from './clock'
 import animationStatus from './animation'
+import mediaMatrix from './media'
 
 const reducers = combineReducers({
   matrix,
@@ -12,7 +13,8 @@ const reducers = combineReducers({
   gameStatus,
   mine,
   clockStatus,
-  animationStatus
+  animationStatus,
+  mediaMatrix
 })
 
 export default reducers

@@ -10,3 +10,5 @@ export const INIT_MATRIX = 'INIT_MATRIX'
 export const CHANGE_CLOCK_STATUS = 'CHANGE_CLOCK_STATUS'
 // 切换动画状态
 export const CHANGE_ANIMATION_STATUS = 'CHANGE_ANIMATION_STATUS'
+// 切换视频状态
+export const CHANGE_MEDIA = 'CHANGE_MEDIA'

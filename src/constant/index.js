@@ -34,13 +34,15 @@ export const mapLevel = [
  * 2 翻开 且为数字
  * 3 翻开 且为地雷
  * 4 未翻开 且被标记
+ * 9 翻开 且展示emoji图像
  */
 export const CellTypes = {
   CELL_NOT_REVEAL: 0,
   CELL_NULL: 1,
   CELL_NUMBER: 2,
   CELL_MINE: 3,
-  CELL_FLAG: 4
+  CELL_FLAG: 4,
+  CELL_EMOJI: 9
 }
 
 /**

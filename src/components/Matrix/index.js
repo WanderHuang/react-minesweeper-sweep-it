@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import Row from '../Row';
 class Matrix extends React.Component {
   render () {
-    const { matrix, level } = this.props;
+    let { matrix } = this.props;
+    const { level, mediaMatrix } = this.props;
+    matrix = mediaMatrix || matrix;
     return (
       <div className="matrix" style={{fontSize: [18, 16, 14, 12][level] + 'px'}}>
         {
@@ -21,6 +23,7 @@ class Matrix extends React.Component {
 // 从state中映射matrix到Matrix组件
 const mapStateToProps = (state) => {
   return {
+    mediaMatrix: state.mediaMatrix,
     matrix: state.matrix,
     level: state.level
   }
