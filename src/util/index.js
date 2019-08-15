@@ -75,7 +75,7 @@ export const initCellValues = (matrix, level) => {
 export const traverseMatrix = (matrix, cell, level) => {
   const { baseCount } = mapLevel[level]
   const { rowIndex, colIndex } = cell;
-  const around = [cell];
+  const around = [];
   if (rowIndex > 0) {
     around.push(matrix[rowIndex - 1][colIndex]);
   }

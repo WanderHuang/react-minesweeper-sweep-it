@@ -62,6 +62,11 @@ export const replaceAllCellStatus = (matrix, cell, level, onContextMenu) => {
   return nextMatrix
 }
 
+const isNullCell = (cell) => {
+  const { status, value, isMine } = cell
+  return status === CellTypes.CELL_NOT_REVEAL && value === 0 && !isMine
+}
+
 /**
  * 遍历清除当前周围的空单元
  * @param {*} matrix 游戏矩阵
@@ -71,17 +76,27 @@ export const replaceAllCellStatus = (matrix, cell, level, onContextMenu) => {
 export const revealEmptyCell = (matrix, cell, level) => {
   const around = traverseMatrix(matrix, cell, level);
   around.forEach((block) => {
-    const { status, value, isMine } = block
-    if (status === CellTypes.CELL_NOT_REVEAL && value === 0 && !isMine) {
+    const { status, value } = block;
+    if (isNullCell(block)) {
       block.status = CellTypes.CELL_NULL;
-      if (block !== cell) {
-        revealEmptyCell(matrix, block, level);
-      }
+      revealEmptyCell(matrix, block, level);
     }
+    // if (status === CellTypes.CELL_NOT_REVEAL && value === 0 && !isMine) {
+    //   block.status = CellTypes.CELL_NULL;
+    //   revealEmptyCell(matrix, block, level);
+    // }
     if (status === CellTypes.CELL_NOT_REVEAL && value !== 0) {
       block.status = CellTypes.CELL_NUMBER;
     }
   });
+  // This cell may not be the matrix's cell, so should set to matrix
+  // fix: one monkey surrounded with numbers that cannot be revealed
+  // Recursive Function will check cell repeatly...
+  if (isNullCell(cell)) {
+    const { rowIndex, colIndex } = cell
+    cell.status = CellTypes.CELL_NULL;
+    matrix[rowIndex][colIndex].status = CellTypes.CELL_NULL
+  }
   return matrix;
 }
 
