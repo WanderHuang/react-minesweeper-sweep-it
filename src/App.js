@@ -11,7 +11,9 @@ class App extends React.Component {
     return (
       <div className="app" style={ Animations[index] }>
         <h1>Minesweeper: Sweep it, Bro!</h1>
-        <Board></Board>
+        <div className="boardArea">
+          <Board></Board>
+        </div>
       </div>
     )
   }

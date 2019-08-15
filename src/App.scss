@@ -14,6 +14,7 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+  padding: 2em 0 10em 0;
   $blockColor: #98c9f5;
   $restartColor: #5cb85c;
   $pauseColor: #5bc0de;
@@ -34,12 +35,23 @@
     text-align: end;
   }
   & h1 {
-    padding-left: 4em;
+    text-align: center;
+    text-shadow: 0 0 5px #6f6f70;
+  }
+  .boardArea {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
   }
   & .board {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    justify-content: center;
+    box-shadow: inset 0 0 10px 5px #6abeef;
+    border-radius: 4em;
+    padding: 2em;
     > .info {
       font-size: 1.2em;
       width: 14em;
@@ -90,13 +102,16 @@
           background: $animationColor;
           border-color: $animationColor;
         }
+        span {
+          text-shadow: 0 0 2px #000000;
+        }
       }
     }
     > .zone {
       > .matrix {
         display: flex;
         flex-direction: column;
-        $borderColor: black;
+        $borderColor: #9e9696;
         > .row {
           display: flex;
           flex-direction: row;
