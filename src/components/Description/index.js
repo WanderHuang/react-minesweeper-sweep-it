@@ -52,7 +52,7 @@ export default class Description extends React.Component {
           <div className="line">
             <span>* </span>
             <Emoji emoji={ Emojis.MONKEY }></Emoji>
-            <span> : means saft area.</span>
+            <span> : means safe area.</span>
           </div>
           <div className="line">
             <span>* </span>
