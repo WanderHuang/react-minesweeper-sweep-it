@@ -1,4 +1,5 @@
 ## 扫雷游戏
+* [性感战士 在线扫雷](https://wanderhuang.github.io/react-minesweeper-sweep-it/)
 
 #### 规则
 
