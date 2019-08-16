@@ -1,8 +1,9 @@
-import { CHANGE_MEDIA } from '../../types';
+import { CHANGE_MEDIA, CHANGE_MEDIA_TIMER } from '../../types';
 
 const initMatrix = null;
+const initTimer = null
 
-const mediaMatrix = (state = initMatrix, action) => {
+export const mediaMatrix = (state = initMatrix, action) => {
   switch(action.type) {
     case CHANGE_MEDIA:
       return action.payload;
@@ -11,4 +12,11 @@ const mediaMatrix = (state = initMatrix, action) => {
   }
 }
 
-export default mediaMatrix;
+export const mediaTimer = (state = initTimer, action) => {
+  switch(action.type) {
+    case CHANGE_MEDIA_TIMER:
+      return action.payload;
+    default:
+      return state;
+  }
+}

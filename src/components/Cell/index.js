@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 // 工具
 import { CellTypes, GameStatus } from '../../constant';
-import { changeMatrix, changeStatus } from '../../store/actions';
+import { changeMatrix, changeStatus, runFailedMedia, runSuccessMedia } from '../../store/actions';
 import { isSuccess, replaceAllCellStatus } from './helper';
 import { Emojis } from '../../constant';
 // 组件
@@ -105,8 +105,10 @@ const mapDispatchToProps = (dispatch, props) => {
       // 踩雷则游戏结束
       if (cell.isMine) {
         dispatch(changeStatus(GameStatus.GAME_FAILED));
+        runFailedMedia(dispatch, nextMatrix);
         // 判断游戏是否成功
       } else if (isSuccess(nextMatrix, level)) {
+        runSuccessMedia(dispatch, nextMatrix);
         dispatch(changeStatus(GameStatus.GAME_SUCCESS));
       }
       dispatch(changeMatrix(nextMatrix));

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 // 工具
-import { changeLevel, initMatrix, changeStatus, changeAnimationStatus } from '../../store/actions';
+import { changeLevel, initMatrix, changeStatus, changeAnimationStatus, changeMediaTimer, changeMediaMatrix } from '../../store/actions';
 import { mapLevel, GameStatus, Emojis } from '../../constant';
 // 组件
 import Emoji from '../Emoji';
@@ -15,23 +15,23 @@ class Info extends React.Component {
   // 【等级变更】响应
   _levelChangeEvent (event) {
     event.preventDefault();
-    const { levelChange } = this.props;
-    levelChange(event);
+    const { levelChange, mediaTimer } = this.props;
+    levelChange(event, mediaTimer);
   }
 
   _levelClickEvent (event) {
     event.preventDefault();
-    const { level, levelChange } = this.props;
+    const { level, levelChange, mediaTimer } = this.props;
     let value = level + 1
     value = value > 3 ? 0 : value
-    levelChange({ target: { value }})
+    levelChange({ target: { value }}, mediaTimer)
   }
 
   // 【重新开始】响应
   _restart (event) {
     event.preventDefault();
-    const { level, restart } = this.props;
-    restart(level);
+    const { restart, level, mediaTimer } = this.props;
+    restart(level, mediaTimer);
     this.refClock.current.resetClock(0);
   }
   // 【暂停】响应
@@ -157,8 +157,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    levelChange: ({ target }) => {
+    levelChange: ({ target }, mediaTimer) => {
       const level = Number(target.value)
+      // 关闭视频
+      clearInterval(mediaTimer)
+      dispatch(changeMediaTimer(null))
+      dispatch(changeMediaMatrix(null))
       // 修改游戏难度
       dispatch(changeLevel(level));
       // 初始化游戏矩阵
@@ -166,7 +170,11 @@ const mapDispatchToProps = (dispatch) => {
       // 修改游戏状态
       dispatch(changeStatus(GameStatus.GAME_NOT_START));
     },
-    restart: (level) => {
+    restart: (level, mediaTimer) => {
+      // 关闭视频
+      clearInterval(mediaTimer)
+      dispatch(changeMediaTimer(null))
+      dispatch(changeMediaMatrix(null))
       // 重置矩阵
       dispatch(initMatrix(level));
       // 重置游戏状态

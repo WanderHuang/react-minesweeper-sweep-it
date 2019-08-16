@@ -1,11 +1,11 @@
-import { combineReducers } from 'redux'
-import matrix from './matrix'
-import level from './level'
-import gameStatus from './status'
-import mine from './mine'
-import clockStatus from './clock'
-import animationStatus from './animation'
-import mediaMatrix from './media'
+import { combineReducers } from 'redux';
+import matrix from './matrix';
+import level from './level';
+import gameStatus from './status';
+import mine from './mine';
+import clockStatus from './clock';
+import animationStatus from './animation';
+import { mediaMatrix, mediaTimer } from './media';
 
 const reducers = combineReducers({
   matrix,
@@ -14,7 +14,8 @@ const reducers = combineReducers({
   mine,
   clockStatus,
   animationStatus,
-  mediaMatrix
+  mediaMatrix,
+  mediaTimer
 })
 
 export default reducers

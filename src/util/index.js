@@ -1,4 +1,13 @@
 import { mapLevel, CellTypes, Emojis } from '../constant'
+
+/**
+ * 判断是否是偶数
+ * @param {Number} number 
+ */
+function isEvenNumber(number) {
+  return number % 2 === 0
+}
+
 /**
  * 初始化一个空二维数组
  * @param { Number } level 当前等级
@@ -151,26 +160,157 @@ export const randomMediaFrame = (level = 3) => {
 }
 
 /**
- * 产生失败的矩阵
+ * 产生一帧失败的矩阵
  * @param {Number} level 
  */
-export const failedMediaFrame = (matrix, endPosX, endPosY) => {
-  let i = 0;
-  let j = 0;
-  for (; i < matrix.length; i++) {
-    const colCount = matrix[i].length
-    for (; j < colCount; j++) {
-      if (i * colCount + j <= endPosX * colCount + endPosY) {
-        matrix[i][j].isEmoji = true
-        matrix[i][j].emoji = Emojis.GAME_FAILED
-      } else {
-        break;
+export const failedMediaFrame = (matrix, currentRowIndex, currentColIndex, isPositive) => {
+  let isNextLine = false;
+  const len = matrix.length;
+  if (isPositive) {
+    if (currentRowIndex >= 0) {
+      const {
+        rowIndex,
+        colIndex,
+        status,
+        isMine,
+        value
+      } = matrix[currentRowIndex][currentColIndex];
+
+      matrix[currentRowIndex][currentColIndex] = {
+        rowIndex,
+        colIndex,
+        cacheStatus: status,
+        status: CellTypes.CELL_NULL,
+        isMine,
+        isEmoji: true,
+        emoji: Emojis.GAME_FAILED,
+        value
       }
+
+      currentColIndex++;
+      if (currentColIndex >= len) {
+        currentColIndex = 0;
+        currentRowIndex--;
+        isNextLine = true;
+      }
+    } else {
+      isPositive = false;
+    }
+  } else {
+    if (currentRowIndex < len) {
+      const {
+        rowIndex,
+        colIndex,
+        cacheStatus,
+        isMine,
+        emoji,
+        value
+      } = matrix[currentRowIndex][currentColIndex];
+
+      matrix[currentRowIndex][currentColIndex] = {
+        rowIndex,
+        colIndex,
+        cacheStatus,
+        status: cacheStatus,
+        isMine,
+        isEmoji: false,
+        emoji,
+        value
+      }
+
+      currentColIndex--;
+      if (currentColIndex < 0) {
+        currentColIndex = len - 1;
+        currentRowIndex++;
+        isNextLine = true;
+      }
+    } else {
+      isPositive = true;
     }
   }
   return {
     matrix: JSON.parse(JSON.stringify(matrix)),
-    i,
-    j
+    rowIndex: currentRowIndex,
+    colIndex: currentColIndex,
+    isNextLine,
+    isPositive
+  }
+}
+
+/**
+ * 产生一帧成功的矩阵
+ * @param {Number} level 
+ */
+export const successMediaFrame = (matrix, currentRowIndex, currentColIndex, isPositive) => {
+  let isNextLine = false;
+  const len = matrix.length;
+  if (isPositive) {
+    if (currentRowIndex >= 0) {
+      const {
+        rowIndex,
+        colIndex,
+        status,
+        isMine,
+        value
+      } = matrix[currentRowIndex][currentColIndex];
+
+      matrix[currentRowIndex][currentColIndex] = {
+        rowIndex,
+        colIndex,
+        cacheStatus: status,
+        status: CellTypes.CELL_NULL,
+        isMine,
+        isEmoji: true,
+        emoji: isEvenNumber(currentColIndex) ? Emojis.INFO_COW : Emojis.INFO_BEAR,
+        value
+      }
+
+      currentColIndex++;
+      if (currentColIndex >= len) {
+        currentColIndex = 0;
+        currentRowIndex--;
+        isNextLine = true;
+      }
+    } else {
+      isPositive = false;
+    }
+  } else {
+    if (currentRowIndex < len) {
+      const {
+        rowIndex,
+        colIndex,
+        cacheStatus,
+        isMine,
+        emoji,
+        value
+      } = matrix[currentRowIndex][currentColIndex];
+
+      matrix[currentRowIndex][currentColIndex] = {
+        rowIndex,
+        colIndex,
+        cacheStatus,
+        status: cacheStatus,
+        isMine,
+        isEmoji: false,
+        emoji,
+        value
+      }
+
+      currentColIndex--;
+      if (currentColIndex < 0) {
+        currentColIndex = len - 1;
+        currentRowIndex++;
+        isNextLine = true;
+      }
+    } else {
+      isPositive = true;
+    }
+  }
+  return {
+    matrix: JSON.parse(JSON.stringify(matrix)),
+    rowIndex: currentRowIndex,
+    colIndex: currentColIndex,
+    isNextLine,
+    isPositive
   }
 }

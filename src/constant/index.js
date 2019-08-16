@@ -158,6 +158,14 @@ export const Emojis = {
   GAME_SUCCESS: {
     content: '🙌',
     description: 'Game Success'
+  },
+  INFO_COW: {
+    content: '🐮',
+    description: 'Cow'
+  },
+  INFO_BEAR: {
+    content: '🍺',
+    description: 'Cow'
   }
 }
 
