@@ -84,6 +84,15 @@ class Info extends React.Component {
     }
   }
 
+  // 渲染开始按钮
+  renderRestartButtonContent (status) {
+    if (status === GameStatus.GAME_NOT_START) {
+      return 'Start'
+    } else {
+      return 'Restart'
+    }
+  }
+
   // 渲染等级emoji
   renderLevelEmoji (level) {
     return [Emojis.GAME_EASY, Emojis.GAME_MEDIUM, Emojis.GAME_HARD, Emojis.GAME_SUPER][level];
@@ -135,7 +144,7 @@ class Info extends React.Component {
         <div className="line">
           <button className="animation" onClick={ this._toggleAnimation.bind(this) }>{ this.renderAnimationButtonContent(animationStatus) }</button>
           <button className="pause" onClick={ this._pause.bind(this) }>{ this.renderPauseButtonContent(gameStatus) }</button>
-          <button className="restart" onClick={ this._restart.bind(this) }>Restart</button>
+          <button className="restart" onClick={ this._restart.bind(this) }>{ this.renderRestartButtonContent(gameStatus) }</button>
         </div>
       </div>
     )
