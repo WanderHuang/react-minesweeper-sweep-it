@@ -11,7 +11,7 @@
 
 #### 截图
 
-![1565773120897](assets/1565773120897.png)
+![1565934382287](assets/1565934382287.png)
 
 ![Game gif](assets/minesweeper.gif)
 
