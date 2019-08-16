@@ -166,6 +166,10 @@ export const Emojis = {
   INFO_BEAR: {
     content: '🍺',
     description: 'Cow'
+  },
+  INFO_NUMBER: {
+    content: '5️⃣',
+    description: 'Number'
   }
 }
 
