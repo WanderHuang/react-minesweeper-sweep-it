@@ -10,7 +10,6 @@ class App extends React.Component {
     return (
       <div className="app" style={ Animations[index] }>
         <h1>Minesweeper: Sweep it, Bro!</h1>
-        <h2 className="subTitle"><a href="https://github.com/WanderHuang/react-minesweeper-sweep-it">Find Me</a></h2>
         <div className="boardArea">
           <Board></Board>
         </div>

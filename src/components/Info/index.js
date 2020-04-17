@@ -146,6 +146,9 @@ class Info extends React.Component {
           <button className="pause" onClick={ this._pause.bind(this) }>{ this.renderPauseButtonContent(gameStatus) }</button>
           <button className="restart" onClick={ this._restart.bind(this) }>{ this.renderRestartButtonContent(gameStatus) }</button>
         </div>
+        <div className="line">
+          <a className="source-code" href="https://github.com/WanderHuang/react-minesweeper-sweep-it">Source Code</a>
+        </div>
       </div>
     )
   }
