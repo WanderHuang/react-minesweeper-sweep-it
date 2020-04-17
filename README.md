@@ -1,48 +1,49 @@
-## 扫雷游戏
-* [性感战士 在线扫雷](https://wanderhuang.github.io/react-minesweeper-sweep-it/)
+# Minesweeper[中文](./README_ZH.md)
 
-#### 规则
+* [Sexy soldier, sweep it online!](https://wanderhuang.github.io/react-minesweeper-sweep-it/)
 
-1. 在n * n的矩阵内，找出所有的地雷
-2. 鼠标左击表示翻开，右击表示标记或取消标记
-3. 翻开方块时，如果是地雷，游戏结束
-4. 每个方块中的数字表示周围一圈（八个）九宫格内，存在的地雷总数
-5. 翻开空白方块时，自动翻开周围方块
+## Rules
 
-#### 截图
+1. Find out all mines in matrix(n * n)
+2. Click for triggering, right click for marking or unmarking.
+3. If you trigger a mine, game over.
+4. Every number inner the box stand for total mines arround in matrix(3 * 3)
+5. Trigger an empty box will trigger all surrounded boxes too.
+
+## Looks like
 
 ![1565934382287](assets/1565934382287.png)
 
 ![Game gif](assets/minesweeper.gif)
 
-#### 已完成
+## Finished
 
-1. 切换难度
+1. level
 
-2. 展示数据
+2. game datas
 
-3. 暂停\继续(为计时做准备)
+3. pause\continue
 
-4. 从新开始
+4. restart
 
-5. 游戏状态记录和展示
+5. game status
 
-6. 界面调优..
+6. beautify ui..
 
-7. 计时器
+7. clock
 
+## To do
 
-#### 待完成
+1. custom matrix(M * N)
+2. more functions
+3. device adaptation
+4. more docs
 
-1. 自定义格子(M * N)
-2. 更多功能按钮
-3. 设备自适应
-4. 完善文档，希望能够帮助到一些和我一样初学react的朋友
+## 更新记录
 
-#### 更新记录
-1. *20190815* 完成项目部署
-2. *20190816* 
-   * 成功后执行动画
-   * 失败后执行动画
-   * 添加Description
-   * 修改一些代码逻辑
+1. *20190815* deployment
+2. *20190816*
+   * animation after success
+   * animation after fail
+   * add Description
+   * fix some logic code
