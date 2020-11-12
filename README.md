@@ -39,7 +39,7 @@
 3. device adaptation
 4. more docs
 
-## 更新记录
+## CHANGELOG
 
 1. *20190815* deployment
 2. *20190816*
